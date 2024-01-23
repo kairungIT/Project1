@@ -25,11 +25,11 @@ chart_data.columns
 
 chart_data = pd.DataFrame(
    {
-       "col1": df['variety'],
-       "col2": df['sepal.width'],
-       "col3": df['sepal.length']
+       "ประเภทดอกไม้": df['variety'],
+       "ความกว้าง": df['sepal.width'],
+       "ความยาว": df['sepal.length']
     
     }
 )
 
-st.bar_chart(chart_data, x="col1", y=["col2","col3"], color=["#FF0000", "#0000FF"])
+st.bar_chart(chart_data, x="ประเภทดอกไม้", y=["ความกว้าง","ความยาว"], color=["#FF0000", "#0000FF"])
