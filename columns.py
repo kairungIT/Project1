@@ -17,8 +17,9 @@ with col3:
 
 #import pandas as pd
 df=pd.read_csv("./data/iris.csv")
-st.button("แสดงข้อมูลตัวอย่าง")
-st.write(df.head(10))
+
+if(st.button("แสดงข้อมูลตัวอย่าง")):
+    st.write(df.head(10))
 
 st.write(df.groupby('variety').mean())
 chart_data=df.groupby('variety').mean()
