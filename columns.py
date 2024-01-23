@@ -19,4 +19,4 @@ with col3:
 df=pd.read_csv("./data/iris.csv")
 st.write(df.head(10))
 
-st.write(df.groupby('species').mean())
+st.write(df.groupby('variety').mean())
