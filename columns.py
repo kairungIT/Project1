@@ -1,60 +1,121 @@
 import streamlit as st
-import pandas as pd
+import plotly.express as px
+from streamlit_extras.stylable_container import stylable_container
 
-col1, col2, col3 = st.columns(3)
+st.title("Hello :balloon:")
 
-with col1:
-   st.header("Versicolor")
-   st.image("https://c.pxhere.com/photos/f2/77/iris_flower_purple-1401467.jpg!d")
-
-with col2:
-   st.header("Verginica")
-   st.image("https://www.fs.usda.gov/wildflowers/beauty/iris/Blue_Flag/images/iris_virginica/iris_virginica_virginica_lg.jpg")
-
-with col3:
-   st.header("Setosa")
-   st.image("https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg")
-
-#import pandas as pd
-df=pd.read_csv("./data/iris.csv")
-
-if(st.button("แสดงข้อมูลตัวอย่าง")):
-    st.write(df.head(10))
-    st.button("ไม่แสดงข้อมูลตัวอย่าง")
-else:
-    st.button("ไม่แสดงข้อมูลตัวอย่าง")
-
-if(st.button("แสดงข้อมูลสถิติ")):
-    #สรุปตามค่าเฉลี่ย กราฟแท่ง
-    st.write(df.groupby('variety').mean())
-    #chart_data=df.groupby('variety').mean()
-    #chart_data.columns
-    chart_data = pd.DataFrame(
-    {
-        "ประเภทดอกไม้": df['variety'],
-        "ความกว้าง": df['sepal.width'],
-        "ความยาว": df['sepal.length']    
+c1, c2 = st.columns(2)
+with c1:
+    with stylable_container(
+        key="cat_container",
+        css_styles=[
+            """
+        {
+            background-color: coral;
+            padding: 0.5em;
+            border-radius: 1em;
         }
+        """,
+            """
+        .stMarkdown {
+            padding-right: 1.5em;
+        }
+        """,
+        ],
+    ):
+        st.markdown(
+            "The cat (Felis catus) is a domestic species of small carnivorous mammal. It is the only domesticated species in the family Felidae and is commonly referred to as the domestic cat or house cat to distinguish it from the wild members of the family. Cats are commonly kept as house pets but can also be farm cats or feral cats; the feral cat ranges freely and avoids human contact."
+        )
+
+with c2:
+    with stylable_container(
+        key="cat_image",
+        css_styles="""
+        img {
+            border-radius: 2em;
+        }
+        """,
+    ):
+        st.image("./cat.jpg")
+
+st.divider()
+
+c1, c2, _ = st.columns([1, 1, 2])
+
+with c1:
+    with stylable_container(
+        key="green_button",
+        css_styles="""
+            button {
+                background-color: green;
+                color: white;
+                border-radius: 20px;
+            }
+            """,
+    ):
+        st.button("Green button")
+
+with c2:
+    with stylable_container(
+        key="black_button",
+        css_styles=[
+            """
+            button {
+                border: solid .3em #292746;
+                border-radius: 20px;
+                color: #fff;
+                background-color: #292746;
+            }
+            """,
+            """
+            button:hover {
+                background-color: red;
+            }
+            """,
+        ],
+    ):
+        st.button("Hover in Red")
+
+with stylable_container(
+    key="st_selectbox",
+    css_styles=[
+        """
+        div[data-baseweb="select"] > div {
+            background-color: red;
+        }
+        """,
+        """
+        div[role="listbox"] ul {
+            background-color: green;
+        }
+        """,
+    ],
+):
+    st.selectbox("Hello", ("Streamlit", "is", "fun"))
+
+
+with stylable_container(
+    key="container_with_border",
+    css_styles=[
+        """
+        {
+            background-color: green;
+            border: 8px double rgba(49, 51, 63, 0.2);
+            border-radius: 0.5rem;
+            padding: 1em;
+        }
+        """,
+        """
+        .stDataFrame {
+
+        }
+        """,
+    ],
+):
+    st.markdown("This is a container with a border.")
+    df = px.data.gapminder().query("country=='Canada'")
+    st.dataframe(df, use_container_width=True)
+    st.plotly_chart(
+        px.line(df, x="year", y="lifeExp", title="Life expectancy in Canada"),
+        use_container_width=True,
     )
-    st.bar_chart(chart_data, x="ประเภทดอกไม้", y=["ความกว้าง","ความยาว"], color=["#FF0000", "#0000FF"])
-    st.button("ไม่แสดงข้อมูลสถิติ")
-else:
-    st.button("ไม่แสดงข้อมูลสถิติ")
-
-import matplotlib.pyplot as plt
-
-# Pie chart, where the slices will be ordered and plotted counter-clockwise:
-labels = 'sepal.width', 'sepal.length', 'petal.width', 'petal.length'
-x1=df['sepal.width'].mean()
-x2=df['sepal.length'].mean()
-x3=df['petal.width'].mean()
-x4=df['petal.length'].mean()
-sizes = [x1, x2, x3, x4]
-explode = (0, 0.1, 0, 0)  # only "explode" the 2nd slice (i.e. 'Hogs')
-
-fig1, ax1 = plt.subplots()
-ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
-        shadow=True, startangle=90)
-#ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-
-st.pyplot(fig1)
