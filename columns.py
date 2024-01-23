@@ -20,3 +20,6 @@ df=pd.read_csv("./data/iris.csv")
 st.write(df.head(10))
 
 st.write(df.groupby('variety').mean())
+chart_data=df.groupby('variety').mean()
+chart_data.columns
+#st.bar_chart(chart_data, x="col1", y="col2", color="col3")
