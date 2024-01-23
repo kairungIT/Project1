@@ -8,8 +8,8 @@ with col1:
 
 with col2:
    st.header("Verginica")
-   st.image("https://static.streamlit.io/examples/dog.jpg")
+   st.image("https://www.fs.usda.gov/wildflowers/beauty/iris/Blue_Flag/images/iris_virginica/iris_virginica_virginica_lg.jpg")
 
 with col3:
    st.header("Setosa")
-   st.image("https://static.streamlit.io/examples/owl.jpg")
+   st.image("https://www.shutterstock.com/image-photo/wild-iris-setosa-blooming-near-reflections-1428851720")
