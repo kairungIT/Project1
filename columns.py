@@ -12,4 +12,4 @@ with col2:
 
 with col3:
    st.header("Setosa")
-   st.image("https://en.m.wikipedia.org/wiki/File:Iris_versicolor_3.jpg")
+   st.image("https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg")
