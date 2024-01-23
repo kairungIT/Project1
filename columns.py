@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 col1, col2, col3 = st.columns(3)
 
@@ -13,3 +14,7 @@ with col2:
 with col3:
    st.header("Setosa")
    st.image("https://upload.wikimedia.org/wikipedia/commons/4/41/Iris_versicolor_3.jpg")
+
+#import pandas as pd
+df=pd.read_csv("./data/iris.csv")
+st.write(df.head(10))
