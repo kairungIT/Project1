@@ -20,7 +20,9 @@ df=pd.read_csv("./data/iris.csv")
 
 if(st.button("แสดงข้อมูลตัวอย่าง")):
     st.write(df.head(10))
-
+else:
+    st.write("ไม่แสดงข้อมูล")
+    
 st.write(df.groupby('variety').mean())
 chart_data=df.groupby('variety').mean()
 chart_data.columns
