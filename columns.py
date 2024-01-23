@@ -36,7 +36,7 @@ if(st.button("แสดงข้อมูลสถิติ")):
         "ความยาว": df['sepal.length']    
         }
     )
-    st.ba_chart(chart_data, x="ประเภทดอกไม้", y=["ความกว้าง","ความยาว"], color=["#FF0000", "#0000FF"])
+    st.bar_chart(chart_data, x="ประเภทดอกไม้", y=["ความกว้าง","ความยาว"], color=["#FF0000", "#0000FF"])
     st.button("ไม่แสดงข้อมูลสถิติ")
 else:
     st.button("ไม่แสดงข้อมูลสถิติ")
