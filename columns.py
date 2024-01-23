@@ -18,3 +18,5 @@ with col3:
 #import pandas as pd
 df=pd.read_csv("./data/iris.csv")
 st.write(df.head(10))
+
+st.write(df.groupby('species').mean())
